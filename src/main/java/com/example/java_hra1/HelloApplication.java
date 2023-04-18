@@ -12,7 +12,7 @@ import javafx.stage.Stage;
 
 
 public class HelloApplication extends Application {
-
+boolean gameON = false;
     @Override
     public void start(Stage stage) {
         Group root = new Group();
@@ -31,8 +31,9 @@ public class HelloApplication extends Application {
         menu.setText("Press Space to Begin");
         root.getChildren().addAll(menu,points);
         scene.setOnKeyPressed(keyEvent -> {
-            if (keyEvent.getCode() == KeyCode.SPACE) {
+            if (keyEvent.getCode() == KeyCode.SPACE&&!gameON) {
                 GameEngine gameEngine = new GameEngine(scene,root);
+                gameON = true;
                 root.getChildren().add(gameEngine);
                 root.getChildren().removeAll(menu,points);
             }
